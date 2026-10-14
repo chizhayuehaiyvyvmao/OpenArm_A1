@@ -1,0 +1,20 @@
+# 直接运行 scripts/5_teleop_control.py，无需命令行参数。
+# CAN3 左主臂 -> CAN1 左从臂；CAN4 右主臂 -> CAN2 右从臂。
+# 每个 CAN 口 ID1~7 为关节、ID8 为夹爪，不交换关节编号。
+arms:
+  left:
+    label: 左臂
+    leader_can: 3
+    follower_can: 1
+    follower_config: Openarm_left.yaml
+    # 新增左臂暂沿用编码器反向映射，尚需实机逐轴确认。
+    joint_signs: [-1, -1, -1, -1, -1, -1, -1]
+    gripper_sign: -1
+  right:
+    label: 右臂
+    leader_can: 4
+    follower_can: 2
+    follower_config: Openarm_right.yaml
+    # 保留右臂上一版方向，包含已修改的 J3/J5。
+    joint_signs: [-1, -1, -1, -1, -1, -1, -1]
+    gripper_sign: -1

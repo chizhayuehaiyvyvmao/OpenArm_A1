@@ -1,0 +1,40 @@
+robot:
+  robot_name: "openarm_HT_left"
+  param_file: "../robot_param/motor_param/7dof_openarm_HT_params_left.yaml"
+  joint_limits:
+    lower: [-3.0543, -3.4208, -1.5708, -2.2689, -1.3614, -0.7854, -1.5708]
+    upper: [1.6581, 0.2793, 1.5708, 1.0472, 1.3614, 0.7854, 1.5708]
+  gripper_limits:
+    lower: -0.2
+    upper: 2.2
+  max_torque: [60.0, 60.0, 36.0, 36.0, 10.0, 21.0, 10.0]
+  velocity_limits: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+  acceleration_limits: [2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0]
+
+urdf:
+  file_path: "../OpenarmV2_URDF/urdf/OpenarmV2_URDF.urdf"
+  base_link: "base_link"
+  end_effector_link: "l_joint7_link"
+
+kinematics:
+  joint_names:
+    - "l_joint1_link"
+    - "l_joint2_link"
+    - "l_joint3_link"
+    - "l_joint4_link"
+    - "l_joint5_link"
+    - "l_joint6_link"
+    - "l_joint7_link"
+  # 电机坐标 -> OpenarmV2 URDF 坐标。新模型的 J2/J6 轴相对旧电机坐标翻转。
+  joint_signs: [1.0, -1.0, 1.0, 1.0, 1.0, -1.0, 1.0]
+
+control:
+  default_velocity: 0.5
+  default_max_torque: 10.0
+  position_tolerance: 0.01
+  timeout: 10.0
+
+moveit_cartesian:
+  eef_step: 0.002
+  jump_threshold: 1.5
+  resample_dt: 0.01
